@@ -1,8 +1,13 @@
 import { LightningElement, wire } from 'lwc';
+import { publish, MessageContext } from 'lightning/messageService';
+import SELECTED_STUDENT_CHANNEL from '@salesforce/messageChannel/SelectedStudentChannel__c';
 import getStudents from '@salesforce/apex/StudentBrowser.getStudents';
 
 export default class StudentBrowser extends LightningElement {
     
+    @wire(MessageContext) messageContext;
+    //salesforce data랑 연결되기 때문에
+
     selectedDeliveryId = '';
     selectedInstructorId = '';
 
@@ -15,6 +20,15 @@ export default class StudentBrowser extends LightningElement {
         this.selectedDeliveryId = event.detail.deliveryId;
     }
 
+    //tile에서 타고 올라와서 detail에 보내주는 event
+    handleStudentSelected(event){
+        const studentId = event.detail.studentId;
+        this.updateSelectedStudent(studentId);
+    }
+
+    updateSelectedStudent(studentId){
+        publish(this.messsageContext, SELECTED_STUDENT_CHANNEL, {studentId: studentId});
+    }
     // studentList = [];
     
     // constructor(){
