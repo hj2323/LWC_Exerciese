@@ -1,13 +1,15 @@
 public with sharing class StudentBrowserForm {
-    
+   
     @AuraEnabled(cacheable=true)
     public static List<User> getInstructors(){
-        return [SELECT Id, Name FROM User WHERE Is_Instructor__c = true ORDER BY Name];
-    }
+        
+		return [SELECT Id, Name FROM User WHERE Is_Instructor__c = true ORDER BY Name];
+
+    }   
     
     @AuraEnabled(cacheable=true)
-    public static List<Course_Delivery__c> getDeliveriesByInstructor(String instructorId){
-    
+    public static List<Course_Delivery__c> getDeliveriesByInstructor(String instructorId) {
+        
 		if (String.isEmpty(instructorId)) {
 			return new List<Course_Delivery__c>();
 		} else {
@@ -19,6 +21,5 @@ public with sharing class StudentBrowserForm {
 			];
 		}
 
-    }
-
+    } 
 }

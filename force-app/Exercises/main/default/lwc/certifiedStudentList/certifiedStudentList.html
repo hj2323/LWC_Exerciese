@@ -1,20 +1,9 @@
 <template>
     <lightning-card title={certificationName}>
         <lightning-button-group slot="actions">
-            <lightning-button-group slot="actions">
-                <lightning-button label="E-Mail"
-                data-btn-id="btnEmail"
-                onclick={onCertActions}
-                disabled={btnGroupDisabled}></lightning-button>
-                <lightning-button label="Send Cert."
-                data-btn-id="btnSendCert"
-                onclick={onCertActions}
-                disabled={btnGroupDisabled}></lightning-button>
-                <lightning-button label="Delete"
-                data-btn-id="btnDelete"
-                onclick={onCertActions} disabled={btnGroupDisabled}
-                variant="destructive"></lightning-button>
-                </lightning-button-group>
+            <lightning-button label="E-Mail" data-btn-id="btnEmail" onclick={onCertActions} disabled={btnGroupDisabled} ></lightning-button>
+            <lightning-button label="Send Cert" data-btn-id="btnSendCert" onclick={onCertActions} disabled={btnGroupDisabled} ></lightning-button>
+            <lightning-button label="Delete" data-btn-id="btnDelete" onclick={onCertActions} disabled={btnGroupDisabled} variant="destructive"></lightning-button>
         </lightning-button-group>
         <lightning-datatable
             key-field="contactId"
@@ -23,4 +12,5 @@
             onrowselection={onRowSelection}>
         </lightning-datatable>
     </lightning-card>
+
 </template>

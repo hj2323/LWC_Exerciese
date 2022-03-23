@@ -29,7 +29,7 @@ export default class StudentDetail extends LightningElement {
 	//TODO #5: use wire service to call getRecord, passing in our studentId and array of fields.
 	//		   Store the result in a property named wiredStudent.
 	//@wire(getRecord, { recordId: "$studentId", fields: [FIELD_Name, FIELD_Description, FIELD_Email, FIELD_Phone] }) 마찬가지로 받아와서 처리해야되므로 필드값 지움
-	@wire(getRecord, { recordId: "$studentId", fields })
+	@wire(getRecord, { recordId: '$studentId', fields })
 	wiredStudent;
 		
 	connectedCallback() {

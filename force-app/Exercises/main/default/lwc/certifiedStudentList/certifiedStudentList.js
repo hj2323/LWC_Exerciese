@@ -87,15 +87,15 @@ export default class CertifiedStudentList extends LightningElement {
         const btnClicked = event.target.getAttribute('data-btn-id');
         switch (btnClicked) {
             case 'btnEmail':
-            break;
+                break;
             case 'btnSendCert':
-            break;
+                break;
             case 'btnDelete':
             this.onDelete();
-            break;
+                break;
             default:
-            break;
-            }
+                break;
+        }
     }
 
     

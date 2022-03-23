@@ -22,12 +22,13 @@ export default class StudentBrowser extends LightningElement {
 
     //tile에서 타고 올라와서 detail에 보내주는 event
     handleStudentSelected(event){
-        const studentId = event.detail.studentId;
+        const studentId=event.detail.studentId;
         this.updateSelectedStudent(studentId);
-    }
 
+    }
+    
     updateSelectedStudent(studentId){
-        publish(this.messsageContext, SELECTED_STUDENT_CHANNEL, {studentId: studentId});
+        publish(this.messageContext,SELECTED_STUDENT_CHANNEL,{studentId: studentId});
     }
     // studentList = [];
     
