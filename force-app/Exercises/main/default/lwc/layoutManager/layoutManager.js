@@ -12,6 +12,10 @@ export default class LayoutManager extends LightningElement {
 	certificationName = '';
 	certificationId = 0;
 
+	//modal property
+	modalHeader = '';
+	modalContent = '';
+
 	handleNavItemSelected(event) {
 		const selectedItemName = event.detail.itemName;
 		
@@ -50,5 +54,19 @@ export default class LayoutManager extends LightningElement {
 			"Dont forget to check back here for updated class schedules and assignments",
 			'info'
 		);
+	}
+
+	handleShowModal(event){
+		//set value of the modal properties
+		this.modalHeader = event.detail.header;
+		this.modalContent = event.detail.content;
+		//html template 변수에 저장하기 
+		const modal = this.template.querySelector('c-modal');
+		modal.show();
+	}
+
+	closeModal(){
+		const modal = this.template.querySelector('c-modal');
+		modal.hide();
 	}
 }

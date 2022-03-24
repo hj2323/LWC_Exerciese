@@ -1,5 +1,11 @@
 <template>
-
+	<span onshowmodal={handleShowModal}>
+	<c-modal header={modalHeader}>
+		{modalContent}
+		<div slot="footer">
+			<lightning-button label="Close" variant="brand" onclick={closeModal}></lightning-button>
+		</div>
+	</c-modal>
 	<lightning-layout horizontal-align="space" multiple-rows>
 
 		<lightning-layout-item padding="around-small" size="12"
@@ -48,4 +54,5 @@
 		</template>
 
 	</lightning-layout>
+	</span>
 </template>
