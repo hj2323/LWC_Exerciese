@@ -6,6 +6,7 @@ export default class StudentTile extends LightningElement {
         PhotoUrl: '/services/images/photo/003B0FakePictId',
     };
 
+    //public property
     @api selectedStudentId = '';
 
     
@@ -19,9 +20,10 @@ export default class StudentTile extends LightningElement {
             bubbles:true, composed:true, 
             detail: {studentId: this.student.Id}});
         this.dispatchEvent(evt);
-        // alert(this.student.Name);
-        // debugger;
-        // console.log('Name', this.student.Name);
-        // console.log('Photo', this.student.PhotoUrl);
+    }
+
+    //define a public method setSelectedStudent that accepts a studentId and stores it in selectedStudentId
+    @api setSelectedStudent(studentId) {
+        this.selectedStudentId = studentId;
     }
 }

@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { subscribe, unsubscribe, MessageContext } from 'lightning/messageService';
+import { subscribe, unsubscribe, MessageContext } from 'lightning/messageService'; //LMS
 import SELECTED_STUDENT_CHANNEL from '@salesforce/messageChannel/SelectedStudentChannel__c';
 // TODO #1: import the reduceErrors function from the c/ldsUtils component.
 import reduceErrors from 'c/ldsUtils';

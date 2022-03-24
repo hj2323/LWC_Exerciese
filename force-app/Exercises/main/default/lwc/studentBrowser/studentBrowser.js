@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { publish, MessageContext } from 'lightning/messageService';
+import { publish, MessageContext } from 'lightning/messageService'; //LMS
 import SELECTED_STUDENT_CHANNEL from '@salesforce/messageChannel/SelectedStudentChannel__c';
 import getStudents from '@salesforce/apex/StudentBrowser.getStudents';
 import { NavigationMixin } from 'lightning/navigation'; // 다른 클래스에 있는 내용들을 멀티로 상속받는 것처럼 사용하기 위해서 
@@ -52,8 +52,16 @@ export default class StudentBrowser extends NavigationMixin(LightningElement) {
 
     }
     
-    updateSelectedStudent(studentId){
-        publish(this.messageContext,SELECTED_STUDENT_CHANNEL,{studentId: studentId});
+    updateSelectedStudent(studentId) {
+        const grid = this.template.querySelector('c-responsive-datatable');
+        const gallery = this.template.querySelector('c-student-tiles');
+        if (gallery) {
+            gallery.setSelectedStudent(studentId);
+        }
+        if (grid) {
+             grid.setSelectedRecord(studentId);
+        }
+        publish(this.messageContext, SELECTED_STUDENT_CHANNEL,{studentId: studentId});
     }
 
     //responsiveDatatable.js에서 이벤트 정의한것의 핸들러
@@ -71,14 +79,15 @@ export default class StudentBrowser extends NavigationMixin(LightningElement) {
     }
      
      //responsiveDatatable.js에서 이벤트 정의한것의 핸들러 - dom 타고 올라가서 student detail값 바꿔 주는 핸들러
-    handleRowClick(event) {
+     handleRowClick(event) {
         const studentId = event.detail.pk;// 클릭한 이벤트에서 pk받아와서 상수로 studentId에 저장한다
          //navigation service to open a *modal* to edit the contact record for the selected student
-        this.updateSelectedStudent(studentId);
+         this.updateSelectedStudent(studentId);
     }  
         
     
-
+   
+   
 
     // studentList = [];
     

@@ -82,4 +82,16 @@ export default class ResponsiveDatatable extends LightningElement {
 		}
 
 	}
+
+	//Define a public method that accepts a recordId
+	@api setSelectedRecord(recordId) {
+		//selector that will find the row has recordId(data-pk)
+		const mySelector = `tr[data-pk='${recordId}']`;
+		//myselector결과를 selectedRow상수로 저장
+		const selectedRow = this.template.querySelector(mySelector);
+		// If the row is found, highlight the row.
+		if (selectedRow) {
+			this.highlightSelectedRow(selectedRow);
+		}
+	}
 }
