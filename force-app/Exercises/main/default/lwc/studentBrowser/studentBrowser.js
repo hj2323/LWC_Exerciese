@@ -15,6 +15,30 @@ export default class StudentBrowser extends LightningElement {
     @wire(getStudents,{instructorId:'$selectedInstructorId', courseDeliveryId:'$selectedDeliveryId'})
     students; //include data and error
 
+    //columns that reponsiveDatatable will use
+    cols = [
+        {
+            fieldName:"Name",
+            label:"Name"
+        },
+        {
+            fieldName:"Title",
+            label:"Title",
+            hiddenOnMobile: true
+        },
+        {
+            fieldName:"Phone",
+            label:"Phone",
+            type: "phone"
+        },
+        {
+            fieldName:"Email",
+            label:"Email",
+            type: "email"
+        }
+    ];
+
+
     handleFilterChange(event){
         this.selectedInstructorId = event.detail.instructorId;
         this.selectedDeliveryId = event.detail.deliveryId;
