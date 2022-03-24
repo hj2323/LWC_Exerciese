@@ -70,7 +70,12 @@ export default class StudentBrowser extends NavigationMixin(LightningElement) {
         });
     }
      
-       
+     //responsiveDatatable.js에서 이벤트 정의한것의 핸들러 - dom 타고 올라가서 student detail값 바꿔 주는 핸들러
+    handleRowClick(event) {
+        const studentId = event.detail.pk;// 클릭한 이벤트에서 pk받아와서 상수로 studentId에 저장한다
+         //navigation service to open a *modal* to edit the contact record for the selected student
+        this.updateSelectedStudent(studentId);
+    }  
         
     
 
