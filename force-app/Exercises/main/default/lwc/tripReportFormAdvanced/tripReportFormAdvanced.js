@@ -89,7 +89,7 @@ export default class TripReportFormAdvanced extends LightningElement {
             this.reviewTypes = data.values.map( (reviewType) => ({
                 value: reviewType.value,
                 label: reviewType.label
-            }))
+            }));
         }
     }
     
@@ -183,7 +183,7 @@ export default class TripReportFormAdvanced extends LightningElement {
     returnToBrowseMode() {
         const evt = new CustomEvent('tripreportmodechange', {
             detail: {
-                mode: "browse"
+            mode: "browse"
             },
         });
         this.dispatchEvent(evt);

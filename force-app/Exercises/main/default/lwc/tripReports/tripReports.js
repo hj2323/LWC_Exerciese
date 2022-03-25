@@ -12,7 +12,7 @@ export default class TripReports extends LightningElement {
 	}
 
 	// function that updates the mode and the selectedTripReportId
-	handleTripReportModeChange(event){
+	handleTripReportModeChange(event) {
 		this.mode = event.detail.mode;
 		this.selectedTripReportId = event.detail.Id;
 	}
