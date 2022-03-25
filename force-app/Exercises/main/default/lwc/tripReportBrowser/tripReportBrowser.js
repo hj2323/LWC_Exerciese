@@ -65,6 +65,16 @@ export default class TripReportBrowser extends LightningElement {
 	onBtnNewClick(){
 		this.changeTripReportMode('add');
 	}
+
+	//datatable row 클릭시 이벤트 핸들러
+	handleRowClick(event){
+		this.selectedRecordId = event.detail.pk;
+	}
+
+	handleRowDblClick(){
+		this.changeTripReportMode('edit');
+	}
+
 	
 
 }
