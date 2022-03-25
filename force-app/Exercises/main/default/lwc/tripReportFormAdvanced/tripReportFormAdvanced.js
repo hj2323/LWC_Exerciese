@@ -153,12 +153,12 @@ export default class TripReportFormAdvanced extends LightningElement {
 					let errorBody = (errors.length) ? errors[0] : 'There was a problem creating your record.';
 					Utils.showToast(this,'Error creating record', errorBody, 'error');
 				});
-            }else {
-                //TODO #8: when doing an update, add the recordId to our fieldsToSave object 
-                //so that the system knows which record to update
-                fieldsToSave[FIELD_ID.fieldApiName] = this.recordId;
-                const recordInput = { fields: fieldsToSave};
-                updateRecord(recordInput)
+        }else {
+            //TODO #8: when doing an update, add the recordId to our fieldsToSave object 
+            //so that the system knows which record to update
+            fieldsToSave[FIELD_ID.fieldApiName] = this.recordId;
+            const recordInput = { fields: fieldsToSave};
+            updateRecord(recordInput)
                 .then(() => {
                     Utils.showToast(this,'Success', 'Trip Report updated', 'success');
                     this.returnToBrowseMode();
