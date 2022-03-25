@@ -120,6 +120,10 @@ export default class TripReportFormAdvanced extends LightningElement {
     onSave() {
         this.saveTripReport();
     }
+    onCancel() {
+        this.returnToBrowseMode();
+    }
+
 
     saveTripReport() {
         const fieldsToSave = {}
