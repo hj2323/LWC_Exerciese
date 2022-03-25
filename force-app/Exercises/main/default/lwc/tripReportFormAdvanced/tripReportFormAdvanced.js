@@ -142,20 +142,22 @@ export default class TripReportFormAdvanced extends LightningElement {
                     //TODO #7: after record creation, store the new ID of the trip report in our recordId property
 					this.recordId = tripReport.id;
                     Utils.showToast(this,'Success', 'Trip Report Created', 'success');
+                    this.returnToBrowseMode();
                 })
                 .catch(error => {
-					let errors = reduceErrors(error);
+                    let errors = reduceErrors(error);
 					let errorBody = (errors.length) ? errors[0] : 'There was a problem creating your record.';
 					Utils.showToast(this,'Error creating record', errorBody, 'error');
 				});
-        }else {
-            //TODO #8: when doing an update, add the recordId to our fieldsToSave object 
-			//so that the system knows which record to update
-            fieldsToSave[FIELD_ID.fieldApiName] = this.recordId;
-            const recordInput = { fields: fieldsToSave};
-            updateRecord(recordInput)
+            }else {
+                //TODO #8: when doing an update, add the recordId to our fieldsToSave object 
+                //so that the system knows which record to update
+                fieldsToSave[FIELD_ID.fieldApiName] = this.recordId;
+                const recordInput = { fields: fieldsToSave};
+                updateRecord(recordInput)
                 .then(() => {
                     Utils.showToast(this,'Success', 'Trip Report updated', 'success');
+                    this.returnToBrowseMode();
                 })
                 .catch(error => {
 					let errors = reduceErrors(error);
@@ -169,13 +171,21 @@ export default class TripReportFormAdvanced extends LightningElement {
 
     //validation 
     validateFields() {
-        const fields =
-Array.from(this.template.querySelectorAll('.validateMe'));
-return fields.every((currentField) =>
-currentField.checkValidity());
+        const fields = Array.from(this.template.querySelectorAll('.validateMe'));
+        return fields.every((currentField) => currentField.checkValidity());
     }
 
     onBlur() {
         this.saveButtonDisabled = !this.validateFields();
-        }
+    }
+
+    //function that fires a custom event to set the trip report mode back to browse
+    returnToBrowseMode() {
+        const evt = new CustomEvent('tripreportmodechange', {
+            detail: {
+                mode: "browse"
+            },
+        });
+        this.dispatchEvent(evt);
+    }
 }

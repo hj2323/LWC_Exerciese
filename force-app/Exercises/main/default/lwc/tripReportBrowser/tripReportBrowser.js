@@ -27,6 +27,7 @@ export default class TripReportBrowser extends LightningElement {
 	];
 
 	tripReports;
+	selectedRecordId = 0;
 
 	connectedCallback() {
 		getAll()
@@ -45,6 +46,25 @@ export default class TripReportBrowser extends LightningElement {
 				}));
 			} 
 		});
+	}// end of connectedCallback
+
+	//fire an event that includes the mode
+	changeTripReportMode(newMode){
+		const eventDetail = { 
+			mode: newMode
+		}
+		if (newMode === 'edit'){ 
+			eventDetail.Id = this.selectedRecordId;
+		}
+
+		const evt = new CustomEvent('tripreportmodechange', {
+			detail: eventDetail
+		});
+		this.dispatchEvent(evt);
+	}
+
+	onBtnNewClick(){
+		this.changeTripReportMode('add');
 	}
 	
 
